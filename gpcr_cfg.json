@@ -1,0 +1,23 @@
+{
+  "max_epochs": 16,
+  "batch_size": 128,
+  "n_filters_list": [
+    256,
+    16,
+    256,
+    32
+  ],
+  "mlp_layers": 2,
+  "readout_layers": 3,
+  "n_head": 6,
+  "dim": 128,
+  "bias": true,
+  "shuffle_idx": true,
+  "datadir": "data/GPCR",
+  "nfold": 5,
+  "fp_linear_layers": 2,
+  "model_path": "None",
+  "split_index_path": "data/GPCR/split_index.pkl",
+  "save_dir": "data/GPCR/result",
+  "seed": 1776
+}

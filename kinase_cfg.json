@@ -1,0 +1,23 @@
+{
+  "max_epochs": 15,
+  "batch_size": 32,
+  "n_filters_list": [
+    16,
+    256,
+    32,
+    256
+  ],
+  "mlp_layers": 2,
+  "readout_layers": 2,
+  "n_head": 2,
+  "dim": 128,
+  "bias": true,
+  "shuffle_idx": false,
+  "datadir": "data/Kinase",
+  "nfold": 5,
+  "fp_linear_layers": 2,
+  "model_path": "None",
+  "split_index_path": "data/Kinase/split_index.pkl",
+  "save_dir": "data/Kinase/result",
+  "seed": 4737
+}
