@@ -1,0 +1,22 @@
+{
+  "max_epochs": 16,
+  "batch_size": 128,
+  "n_filters_list": [
+    256,
+    256,
+    32
+  ],
+  "mlp_layers": 3,
+  "readout_layers": 1,
+  "n_head": 4,
+  "dim": 64,
+  "bias": true,
+  "shuffle_idx": false,
+  "datadir": "data/BindingDB",
+  "nfold": 5,
+  "fp_linear_layers": 2,
+  "model_path": "None",
+  "split_index_path": "data/BindingDB/split_index.pkl",
+  "save_dir": "data/BindingDB/result",
+  "seed": 4737
+}

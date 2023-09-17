@@ -1,0 +1,31 @@
+Net(
+  (block_layers): ModuleList(
+    (0): GConvBlock1(n_feats=74,n_filters=16,mols=1,adj_chans=6,bias=True) -> [b, N, 16]
+    (1): GConvBlock1(n_feats=16,n_filters=256,mols=1,adj_chans=6,bias=True) -> [b, N, 256]
+    (2): GConvBlock1(n_feats=256,n_filters=32,mols=1,adj_chans=6,bias=True) -> [b, N, 32]
+    (3): GConvBlock1(n_feats=32,n_filters=256,mols=1,adj_chans=6,bias=True) -> [b, N, 256]
+  )
+  (fp_linear_layers): ModuleList(
+    (0): Linear(in_features=679, out_features=128, bias=True)
+    (1): Linear(in_features=128, out_features=128, bias=True)
+  )
+  (mol_attention_layer): MultiHeadGlobalAttention(n_feats=256,n_head=2,alpha=0.2,concat=True,bias=True) -> [b, 512]
+  (readout_layers): ModuleList(
+    (0): Linear(in_features=512, out_features=128, bias=True)
+    (1): Linear(in_features=128, out_features=128, bias=True)
+  )
+  (merge_feats_layer): Linear(in_features=256, out_features=128, bias=True)
+  (prot_emb_layer): Embedding(8600, 128)
+  (mol_feat_linear_layer): Linear(in_features=128, out_features=128, bias=True)
+  (prot_emb_linear_layer): Linear(in_features=128, out_features=128, bias=True)
+  (mlp_layers1): ModuleList(
+    (0): Linear(in_features=256, out_features=256, bias=True)
+    (1): Linear(in_features=256, out_features=256, bias=True)
+  )
+  (mlp_layers2): ModuleList(
+    (0): Linear(in_features=256, out_features=256, bias=True)
+    (1): Linear(in_features=256, out_features=256, bias=True)
+  )
+  (out_layer1): Linear(in_features=256, out_features=2, bias=True)
+  (out_layer2): Linear(in_features=256, out_features=2, bias=True)
+)
