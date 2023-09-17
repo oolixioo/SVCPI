@@ -88,10 +88,13 @@ def calc_data_from_smile(smiles, addh=False, calc_desc=False, with_ring_conj=Fal
     '''
     Method that constructs the data of a molecular.
     :param smiles: SMILES representation of a molecule
-    :param addh: should we add all the Hs of the mol
-    :param with_ring_conj: should the AdjecentTensor contains bond in ring and
-        is conjugated info
-    :return: V, A, global_state, mol_size, subgraph_size
+    :param addh: should we add or remove the Hs of the mol
+    :param calc_desc: should we calculate the global_state descripters
+    :param with_ring_conj: should the AdjecentTensor contains bond in ring and is conjugated info
+    :param with_atom_feats: should we calculate the atom features
+    :param with_submol_fp: should we calculate the submol fingerprint of atoms
+    :param with_subgraph_fp: should we calculate the subgraph fingerprint of atoms
+    :return: {'V': V, 'A': A, 'G': global_state, 'mol_size': mol_size, 'subgraph_size': subgraph_size}
     '''
     mol = Chem.MolFromSmiles(smiles, sanitize=True)
     #mol.UpdatePropertyCache(strict=False)
