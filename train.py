@@ -172,24 +172,6 @@ def run_train(cfg, data, test_data=None, isopt=False):
 
     start_t = timeit.default_timer()
 
-    # nfold validation
-    uskf = False
-    if os.path.exists(split_index_path):
-        try:
-            itero = pickle.load(open(split_index_path, 'rb'))
-            print('Using split index from file: %s' %split_index_path)
-        except:
-            uskf = True
-    else:
-        uskf = True
-
-    if uskf:
-        print('Using split index from KFold.split')
-        kf = KFold(n_splits=nfold, shuffle=True, random_state=1000)
-        itero = list(kf.split(data))
-
-    pickle.dump(itero, open(file_split_idx, 'wb'))
-
     for fold, (train_idx, dev_idx) in enumerate(itero):
         print('Training fold %s of %s...' %(fold+1, len(itero)))
 
