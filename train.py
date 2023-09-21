@@ -53,7 +53,10 @@ def fmt_aucs(rst, pheader=False):
     return txt
 
 def save_aucs(rst, fn):
-    txt = fmt_aucs(rst)
+    if type(rst) is list:
+        txt = fmt_aucs(rst)
+    else:
+        txt = str(rst)
 
     if not os.path.exists(fn):
         with open(fn, 'w') as f:
@@ -160,8 +163,6 @@ def run_train(cfg, data, test_data=None, isopt=False):
         itero = list(kf.split(data))
 
     pickle.dump(itero, open(file_split_idx, 'wb'))
-
-    #copy_code_files(save_path)
 
     json.dump(cfg, open(file_cfg, 'w'), indent=2)
 
