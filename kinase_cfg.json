@@ -19,7 +19,7 @@
   "n_head": 8,
   "nfold": 5,
   "readout_layers": 3,
-  "save_dir": "data/Kinase/hyperopt3",
+  "save_dir": "data/Kinase/result",
   "seed": 1776,
   "shuffle": false,
   "shuffle_idx": true,
