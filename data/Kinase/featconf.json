@@ -1,0 +1,14 @@
+{
+  "addh": true,
+  "calc_desc": false,
+  "with_ring_conj": false,
+  "with_atom_feats": true,
+  "with_submol_fp": false,
+  "with_subgraph_fp": false,
+  "nbits": 512,
+  "use_morgan": false,
+  "use_macc": true,
+  "use_rdkit": false,
+  "prot_cover": 1,
+  "prot_n": 3
+}
