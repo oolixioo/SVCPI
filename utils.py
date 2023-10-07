@@ -1,4 +1,9 @@
 import torch
+import protein
+
+protein.load_word_dict()
+
+EE_DICT = {}
 
 def gather(x, indices):
     indices = indices.view(-1, indices.shape[-1]).tolist()
@@ -123,7 +128,7 @@ def create_batch(input, pad=False, device=torch.device('cpu')):
             'index': idxs,
             'smiles': smis}
 
-def create_mol_protein_batch(input, pad=False, device=torch.device('cpu'), pr=True):
+def create_mol_protein_batch(input, pad=False, device=torch.device('cpu'), pr=True, ee=0):
     vl = []
     al = []
     gsl = []
@@ -136,19 +141,40 @@ def create_mol_protein_batch(input, pad=False, device=torch.device('cpu'), pr=Tr
     smis = []
     fpl = []
 
-    for d in input:
+    for n, d in enumerate(input):
         vl.append(d['V'])
         al.append(d['A'])
         gsl.append(d['G'])
         msl.append(d['mol_size'])
         ssl.append(d['subgraph_size'])
         prot.append(d['protein_seq'])
-        seq.append(d['protein'])
+        if 'protein' in d:
+            seq.append(d['protein'])
+        else:
+            seq.append('')
         lbl.append(d['label'])
         idxs.append(d['index'])
         smis.append(d['smiles'])
         if 'fp' in d:
             fpl.append(d['fp'])
+
+        if ee > 0 and n % ee == 0:
+            for l in [vl, al, gsl, msl, ssl, seq, idxs, smis, fpl]:
+                try:
+                    l.append(l[-1])
+                except:
+                    pass
+                    
+            if d['index'] in EE_DICT:
+                t = EE_DICT[d['index']]
+                prot.append(t)
+                lbl.append(torch.LongTensor([0]))
+            else:
+                idx = torch.randperm(d['protein_seq'].nelement()-2) + 1
+                t = torch.cat([torch.IntTensor([protein.WORD_DICT['^^^']]), d['protein_seq'][idx], torch.IntTensor([protein.WORD_DICT['$$$']])])
+                prot.append(t)
+                lbl.append(torch.LongTensor([0]))
+                EE_DICT[d['index']] = t
 
     if gsl[0] is not None:
         if pad:
