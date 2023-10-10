@@ -183,16 +183,6 @@ def run_train(cfg, data, test_data=None, isopt=False):
             os.system('python shuffle.py /tmp/tmp.pkl')
             train_idx = pickle.load(open('/tmp/tmp.pkl', 'rb'))
 
-            pickle.dump(dev_idx, open('/tmp/tmp.pkl', 'wb'))
-            os.system('python shuffle.py /tmp/tmp.pkl')
-            dev_idx = pickle.load(open('/tmp/tmp.pkl', 'rb'))
-
-            if test_data:
-                print('Shuffle test_data...')
-                pickle.dump(test_data, open('/tmp/tmp.pkl', 'wb'))
-                os.system('python shuffle.py /tmp/tmp.pkl')
-                test_data = pickle.load(open('/tmp/tmp.pkl', 'rb'))
-
         best_auc = 0
         best_eval_val = 0
 
